@@ -10,11 +10,16 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+
+
 public class Calculatrice  extends JFrame implements ActionListener {
 
 	JButton[][] calculatriceArray = new JButton[5][4]; //création du tableau 6 lignes/ 4 colonnes
-	private JTextField txtNombre = new JTextField("0");
-	
+	private JTextField txtNombre = new JTextField("");
+	double num1 = 0;
+	double num2 = 0;
+	double result = 0;
+	char operator;
 	public Calculatrice() 
 	{
 		this.setTitle("");
@@ -28,7 +33,7 @@ public class Calculatrice  extends JFrame implements ActionListener {
 		this.txtNombre.setHorizontalAlignment(JLabel.RIGHT);
 		
 		//              [Rows][Columns]
-		calculatriceArray[0][0] = new JButton("AC");
+		calculatriceArray[0][0] = new JButton("AC"); 
 		calculatriceArray[0][1] = new JButton("+/-");
 		calculatriceArray[0][2] = new JButton("%");
 		calculatriceArray[0][3] = new JButton("÷");
@@ -136,6 +141,7 @@ public class Calculatrice  extends JFrame implements ActionListener {
 		for (int i=0; i < 1; i++) {
 		    for (int j=0; j < 3; j++) {
 		    	this.calculatriceArray[i][j].setBackground(new Color(76, 77, 79));
+		    	this.calculatriceArray[i][j].addActionListener(this);
 		    }
 		}   
 		
@@ -143,6 +149,7 @@ public class Calculatrice  extends JFrame implements ActionListener {
 		for (int i=0; i < calculatriceArray.length ; i++) {
 		    for (int j=3; j < 4; j++) {
 		    	this.calculatriceArray[i][j].setBackground(new Color(253, 158, 42));
+		    	
 		    }
 		} 
 		
@@ -150,6 +157,8 @@ public class Calculatrice  extends JFrame implements ActionListener {
 		for (int i=1; i < calculatriceArray.length; i++) {
 		    for (int j=0; j < 3; j++) {
 		    	this.calculatriceArray[i][j].setBackground(new Color(121,125,127));
+		    	this.calculatriceArray[i][j].setFocusable(false);
+		    	
 		    }
 		}   
 		
@@ -169,10 +178,153 @@ public class Calculatrice  extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == this.calculatriceArray )
-		{
 		
+		//==============================Les chiffres ====================================
+		 
+		//7,8,9
+		
+		if (e.getSource () == calculatriceArray[1][0])
+		{
+			String str = txtNombre.getText() + "7";
+			this.txtNombre.setText(str);
 		}
+		
+		else if (e.getSource () == calculatriceArray[1][1])
+		{
+			String str = txtNombre.getText() + "8";
+			this.txtNombre.setText(str);
+		}
+		
+		else if (e.getSource () == calculatriceArray[1][2])
+		{
+			String str = txtNombre.getText() + "9";
+			this.txtNombre.setText(str);
+		}
+		
+		// 4,5,6
+		
+		else if (e.getSource () == calculatriceArray[2][0])
+		{
+			String str = txtNombre.getText() + "4";
+			this.txtNombre.setText(str);
+		}
+		
+		else if (e.getSource () == calculatriceArray[2][1])
+		{
+			String str = txtNombre.getText() + "5";
+			this.txtNombre.setText(str);
+		}
+		
+		else if (e.getSource () == calculatriceArray[2][2])
+		{
+			String str = txtNombre.getText() + "6";
+			this.txtNombre.setText(str);
+		}
+
+		// 1,2,3
+		
+		else if (e.getSource () == calculatriceArray[3][0])
+		{
+			String str = txtNombre.getText() + "1";
+			this.txtNombre.setText(str);
+		}
+		
+		else if (e.getSource () == calculatriceArray[3][1])
+		{
+			String str = txtNombre.getText() + "2";
+			this.txtNombre.setText(str);
+		}
+		
+		else if (e.getSource () == calculatriceArray[3][2])
+		{
+			String str = txtNombre.getText() + "3";
+			this.txtNombre.setText(str);
+		}
+		
+		//0 et ","
+	
+		else if (e.getSource () == calculatriceArray[4][0])
+		{
+			String str = txtNombre.getText() + "0";
+			this.txtNombre.setText(str);
+		}
+		
+		else if (e.getSource () == calculatriceArray[4][2])
+		{
+			String str = txtNombre.getText() + ".";
+			this.txtNombre.setText(str);
+		}
+		
+		
+		
+		
+		
+		
+		
+		//==========================les opérateurs de calcul================================
+		else if (e.getSource () == calculatriceArray[0][0])
+		{
+			this.txtNombre.setText("");
+		}
+		else if (e.getSource () == calculatriceArray[0][1])
+		{
+			num1 = Double.parseDouble(txtNombre.getText());
+			operator = '_';
+			this.txtNombre.setText("");
+		}
+		
+		else if (e.getSource () == calculatriceArray[0][2])
+		{
+			num1 = Double.parseDouble(txtNombre.getText());
+			operator = '%';
+			this.txtNombre.setText("");
+		}
+		
+		else if (e.getSource () == calculatriceArray[3][3])
+		{
+			num1 = Double.parseDouble(txtNombre.getText());
+			operator = '+';
+			this.txtNombre.setText("");
+		}
+		
+		else if (e.getSource () == calculatriceArray[2][3])
+		{
+			num1 = Double.parseDouble(txtNombre.getText());
+			operator = '-';
+			this.txtNombre.setText("");
+		}
+		
+		else if (e.getSource () == calculatriceArray[1][3])
+		{
+			num1 = Double.parseDouble(txtNombre.getText());
+			operator = 'x';
+			this.txtNombre.setText("");
+		}
+		
+		else if (e.getSource () == calculatriceArray[0][3])
+		{
+			num1 = Double.parseDouble(txtNombre.getText());
+			operator = '/';
+			this.txtNombre.setText("");
+			
+		}
+		
+		
+		if(e.getSource() == calculatriceArray[4][3])
+		{
+			 num2 = Double.parseDouble((txtNombre.getText()));
+			switch(operator)
+			{
+			case '+' : result = num1 + num2; break;
+			case '-' : result = num1 - num2; break;
+			case 'x' : result = num1 * num2; break;
+			case '÷' : result = num1 / num2; break;
+			}
+			
+			txtNombre.setText(String.valueOf(result));
+			num1 = result;
+		}
+		
 		
 	}
 
