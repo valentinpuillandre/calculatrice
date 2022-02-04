@@ -141,10 +141,10 @@ public class Calculatrice  extends JFrame implements ActionListener {
 		for (int i=0; i < 1; i++) {
 		    for (int j=0; j < 3; j++) {
 		    	this.calculatriceArray[i][j].setBackground(new Color(76, 77, 79));
-		    	this.calculatriceArray[i][j].addActionListener(this);
+		    	//this.calculatriceArray[i][j].addActionListener(this);
 		    }
 		}   
-		
+
 		//faire la dernière colonne
 		for (int i=0; i < calculatriceArray.length ; i++) {
 		    for (int j=3; j < 4; j++) {
@@ -185,8 +185,10 @@ public class Calculatrice  extends JFrame implements ActionListener {
 		
 		if (e.getSource () == calculatriceArray[1][0])
 		{
+			
 			String str = txtNombre.getText() + "7";
 			this.txtNombre.setText(str);
+			
 		}
 		
 		else if (e.getSource () == calculatriceArray[1][1])
@@ -256,28 +258,19 @@ public class Calculatrice  extends JFrame implements ActionListener {
 		}
 		
 		
-		
-		
-		
-		
-		
 		//==========================les opérateurs de calcul================================
 		else if (e.getSource () == calculatriceArray[0][0])
 		{
 			this.txtNombre.setText("");
 		}
-		else if (e.getSource () == calculatriceArray[0][1])
-		{
-			num1 = Double.parseDouble(txtNombre.getText());
-			operator = '_';
-			this.txtNombre.setText("");
-		}
+		
 		
 		else if (e.getSource () == calculatriceArray[0][2])
 		{
-			num1 = Double.parseDouble(txtNombre.getText());
-			operator = '%';
-			this.txtNombre.setText("");
+			double temps = Double.parseDouble(txtNombre.getText());
+			temps = temps / 100;
+			//System.out.println(temps);
+			txtNombre.setText(temps+"");
 		}
 		
 		else if (e.getSource () == calculatriceArray[3][3])
@@ -304,14 +297,23 @@ public class Calculatrice  extends JFrame implements ActionListener {
 		else if (e.getSource () == calculatriceArray[0][3])
 		{
 			num1 = Double.parseDouble(txtNombre.getText());
-			operator = '/';
+			operator = '÷';
 			this.txtNombre.setText("");
 			
 		}
-		
-		
-		if(e.getSource() == calculatriceArray[4][3])
+		///bouton pour passer en négatif
+		else if(e.getSource() == calculatriceArray[0][1])
 		{
+			double temps = Double.parseDouble(txtNombre.getText());
+			temps = temps * (-1);
+			//System.out.println(temps);
+			txtNombre.setText(temps+"");
+		}
+	
+		
+		else 	if(e.getSource() == calculatriceArray[4][3])
+		{
+			
 			 num2 = Double.parseDouble((txtNombre.getText()));
 			switch(operator)
 			{
@@ -319,6 +321,7 @@ public class Calculatrice  extends JFrame implements ActionListener {
 			case '-' : result = num1 - num2; break;
 			case 'x' : result = num1 * num2; break;
 			case '÷' : result = num1 / num2; break;
+			
 			}
 			
 			txtNombre.setText(String.valueOf(result));
