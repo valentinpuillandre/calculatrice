@@ -11,7 +11,6 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 
-
 public class Calculatrice  extends JFrame implements ActionListener {
 
 	JButton[][] calculatriceArray = new JButton[5][4]; //création du tableau 6 lignes/ 4 colonnes
@@ -32,7 +31,7 @@ public class Calculatrice  extends JFrame implements ActionListener {
 		
 		this.txtNombre.setHorizontalAlignment(JLabel.RIGHT);
 		
-		//              [Rows][Columns]
+		//         cells     [Rows][Columns]
 		calculatriceArray[0][0] = new JButton("AC"); 
 		calculatriceArray[0][1] = new JButton("+/-");
 		calculatriceArray[0][2] = new JButton("%");
